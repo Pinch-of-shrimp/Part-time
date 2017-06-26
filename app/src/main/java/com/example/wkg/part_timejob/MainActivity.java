@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.fragment_containt,f3).commit();
                         break;
                     case 3:
+                        Fragment f4=new Fragment_person_information();
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_containt,f4).commit();
                         break;
                     default:
                         break;
