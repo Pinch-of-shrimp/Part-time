@@ -65,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
                         ft.replace(R.id.fragment_containt,f1).commit();
                         break;
                     case 1:
-                        Fragment f2=new Fragment_person_information();
+                        Fragment f2=new Fragment_Market_Information();
                         FragmentTransaction ft2=getFragmentManager().beginTransaction();
                         ft2.replace(R.id.fragment_containt,f2).commit();
                         break;
                     case 2:
+                        Fragment f3=new Fragment_Conversation();
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_containt,f3).commit();
                         break;
                     case 3:
                         break;
