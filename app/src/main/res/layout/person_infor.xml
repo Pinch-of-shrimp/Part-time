@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--首行的东西-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="64.0dip">
+        <!--个人信息头像和小字-->
+        <ImageView
+            android:id="@+id/iconImage"
+            android:background="#00000000"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginBottom="5.0dip" />
+        <LinearLayout
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+            <!--android:lines="1"超出部分显示
+              该部分表示的是用户的信息部分
+              个人信息页-->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2.0dip"
+                android:paddingLeft="2.0dip"
+                android:paddingRight="8.0dip"
+                android:paddingTop="10.0dip"
+                android:lines="1"
+                android:textColor="#ffff4c06"
+                android:textSize="17.0dip"
+                />
+        </LinearLayout>
+        <!--利用recycleview实现各个list-->
+
+    </LinearLayout>
+    <!--背景的修改background
+        recycleView 其中recycleView Id 是recycleview_person -->
+    <!--
+    <android.support.v7.app.AlertController.RecycleListView
+        android:id="@+id/recycleview_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/crimson">
+    </android.support.v7.app.AlertController.RecycleListView>
+    -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/group_one"
+        android:background="@color/gray">
+    </ListView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/group_two">
+
+    </ListView>
+</LinearLayout>
