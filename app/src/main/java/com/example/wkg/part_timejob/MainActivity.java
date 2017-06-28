@@ -3,9 +3,15 @@ package com.example.wkg.part_timejob;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Environment;
+import android.service.notification.StatusBarNotification;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -13,8 +19,12 @@ import android.widget.LinearLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import cn.jpush.im.android.api.JMessageClient;
+
+
 public class MainActivity extends AppCompatActivity {
     private FrameLayout fl_contain;
+    private SharedPreferences pref;
     /*
     变量声明
      */
@@ -23,9 +33,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pref=getPreferences(0);
         fl_contain= (FrameLayout) findViewById(R.id.fragment_containt);
         initBottomNavigationBar();
+        initJmessage();
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    void initJmessage()
+    {
+        JMessageClient.init(getApplicationContext(),true);
     }
 
     private void initBottomNavigationBar(){
