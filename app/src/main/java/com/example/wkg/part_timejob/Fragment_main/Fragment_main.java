@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.maps.model.MyLocationStyleCreator;
 import com.example.wkg.part_timejob.R;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -22,14 +26,58 @@ public class Fragment_main extends Fragment {
     private Banner banner;
     private ArrayList<Integer> list_path;
     private ArrayList<String> list_title;
+    private MapView mainMAP;
+    private AMap aMap;
+    private MyLocationStyle myLocationStyle;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_main,container,false);
         banner = (Banner)view.findViewById(R.id.banner);
+        mainMAP= (MapView) view.findViewById(R.id.main_maps);
+        mainMAP.onCreate(savedInstanceState);
+        if(myLocationStyle==null)
+        {
+            myLocationStyle=new MyLocationStyle();
+
+        }
+        myLocationStyle.interval(2000);
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
         InitData();
+        if(aMap==null)
+        {
+            aMap=mainMAP.getMap();
+        }
+        aMap.setMyLocationStyle(myLocationStyle);
+        aMap.setMyLocationEnabled(true);
+
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mainMAP.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainMAP.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mainMAP.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mainMAP.onSaveInstanceState(outState);
+    }
+
     private void InitData()
     {
         //banner=(Banner)getActivity().findViewById(R.id.banner);

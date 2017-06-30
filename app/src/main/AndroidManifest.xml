@@ -38,6 +38,10 @@
         android:supportsRtl="true"
         tools:replace="label"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b2ddeed275558a155c5186123eca45cd"
+            />
         <!--android:theme="@style/AppTheme" -->
         <service android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
