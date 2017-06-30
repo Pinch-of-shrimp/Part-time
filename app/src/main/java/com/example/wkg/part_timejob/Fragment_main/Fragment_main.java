@@ -34,11 +34,15 @@ public class Fragment_main extends Fragment {
     {
         //banner=(Banner)getActivity().findViewById(R.id.banner);
         list_path=new ArrayList<>();
-        list_path.add(R.drawable.test);
-        list_path.add(R.drawable.test);
+        list_path.add(R.drawable.graph1);
+        list_path.add(R.drawable.graph2);
+        list_path.add(R.drawable.graph3);
+        list_path.add(R.drawable.graph4);
         list_title=new ArrayList<>();
-        list_title.add("爱祖国");
-        list_title.add("爱人民");
+        list_title.add("成功");
+        list_title.add("兼职信息");
+        list_title.add("就业分布");
+        list_title.add("职业类别");
         //banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(list_path);
