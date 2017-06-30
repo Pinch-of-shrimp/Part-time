@@ -1,23 +1,15 @@
 package com.example.wkg.part_timejob;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.Environment;
-import android.service.notification.StatusBarNotification;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.wkg.part_timejob.Fragment_main.Fragment_main;
 
 import cn.jpush.im.android.api.JMessageClient;
 
