@@ -35,6 +35,7 @@ import cn.jpush.im.android.api.event.MessageBaseEvent;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.android.api.options.MessageSendingOptions;
 import cn.jpush.im.api.BasicCallback;
 
 /**
@@ -47,6 +48,7 @@ public class Fragment_Conversation extends Fragment {
     private AlertDialog dia_addFriend;
     private AlertDialog dia_conversation;
     private ArrayList<Conversation_Data>datas;
+    private ArrayList<Message>data_show_rv;
     private EditText et_addfriend;
     private Button btn_addfriend;
     private  conversation_rv_adapter adapter;
@@ -58,9 +60,11 @@ public class Fragment_Conversation extends Fragment {
         tb_conversation= (Toolbar) view.findViewById(R.id.tb_conversation);
         setHasOptionsMenu(true);
         datas=new ArrayList<>();
+        data_show_rv=new ArrayList<Message>();
         ((AppCompatActivity)getActivity()).setSupportActionBar(tb_conversation);
         adapter=new conversation_rv_adapter(getContext());
         adapter.setArrayList(datas);
+        show_rv_adpter=new conversationShow_rv_adpter(data_show_rv,getActivity(),null);
         JMessageClient.registerEventReceiver(this);
         //ContactManager.acceptInvitation();
         overseeTheFriend();
@@ -119,7 +123,7 @@ public class Fragment_Conversation extends Fragment {
         switch (msg.getContentType())
         {
             case text:
-                adpter.addData(msg);
+                show_rv_adpter.addData(msg);
                 //文字信息更新到adpater中
                 break;
             case image:
@@ -190,7 +194,8 @@ public class Fragment_Conversation extends Fragment {
     private ImageButton ibtn_sendInformation;
     private EditText et_themessage;
     private RecyclerView rv_holdmessage;
-    private conversationShow_rv_adpter adpter;
+    private conversationShow_rv_adpter show_rv_adpter;
+    private Conversation conversation;
     public void showConversationdia(final UserInfo info)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
@@ -201,24 +206,29 @@ public class Fragment_Conversation extends Fragment {
         et_themessage= (EditText) view.findViewById(R.id.et_conversation_dialog);
         rv_holdmessage= (RecyclerView) view.findViewById(R.id.rv_conversation_dialog);
         rv_holdmessage.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv_holdmessage.setAdapter(adpter);
-        final Conversation conversation= Conversation.createSingleConversation(info.getUserName(),null);
+        rv_holdmessage.setAdapter(show_rv_adpter);
+        conversation= Conversation.createSingleConversation(info.getUserName(),null);
         ibtn_sendInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(),"it is work",Toast.LENGTH_SHORT).show();
                 final Message message=conversation.createSendMessage(new TextContent(et_themessage.getText().toString()));
+                MessageSendingOptions options=new MessageSendingOptions();
+                options.setRetainOffline(false);
                 message.setOnSendCompleteCallback(new BasicCallback() {
                     @Override
                     public void gotResult(int i, String s) {
                         if(i==0)
                         {
-                            adpter.addData(message);
+                            show_rv_adpter.addData(message);
                         }
                     }
                 });
+                JMessageClient.sendMessage(message);
 
             }
         });
+
         builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -36,9 +36,11 @@ public class Fragment_Market_Information extends Fragment {
                 {
                     case R.id.rb_recommend:
                         Toast.makeText(getContext(),"this is the information fragment",Toast.LENGTH_SHORT).show();
+                        getFragmentManager().beginTransaction().replace(R.id.Chirld_containt,new Fragment_Market_one()).commit();
                         break;
                     case R.id.rb_classify:
                         Toast.makeText(getContext(),"this is the graph fragment",Toast.LENGTH_SHORT).show();
+                        getFragmentManager().beginTransaction().replace(R.id.Chirld_containt,new Fragment_Web()).commit();
                         break;
                     default:
                         break;
