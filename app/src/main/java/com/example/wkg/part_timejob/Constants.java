@@ -18,6 +18,10 @@ public class Constants {
     public static final String NAME = "name";
     public static final String EMAIL = "email";
     public static final String TOKEN="token";
+    public static final int RECIVIRETEXT=1;
+    public static final int RECIVERIMAGE=2;
+    public static final int SENDTEXT=3;
+    public static final int SENDIMAGE=4;
     public static final String UNIQUE_ID = "unique_id";
     public static final String TAG = "Learn2Crack";
 }

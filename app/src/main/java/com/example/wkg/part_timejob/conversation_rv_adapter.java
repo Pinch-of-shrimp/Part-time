@@ -78,6 +78,11 @@ public class conversation_rv_adapter extends RecyclerView.Adapter<conversation_r
     {
         void onItemClick(View view,int position);
     }
+    public void addData(Conversation_Data n)
+    {
+        arrayList.add(n);
+        notifyItemInserted(arrayList.size());
+    }
     public void setItemClickListener(MyItemClickListener myItemClickListener)
     {
         this.myItemClickListener=myItemClickListener;

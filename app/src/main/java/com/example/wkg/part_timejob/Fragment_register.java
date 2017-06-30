@@ -77,7 +77,7 @@ public class Fragment_register extends Fragment implements View.OnClickListener 
                 String verity=et_passwordVerity.getText().toString();
                 if(verity.equals(password)) {
                     RegisterProcess(name, password, code, email);
-                    RegisterinJmessage(name,password);
+                    RegisterinJmessage(email,password);
                 }
                 else
                     Toast.makeText(getContext(),"please input the same password",Toast.LENGTH_SHORT).show();

@@ -24,6 +24,11 @@ public class ListAdapter extends BaseAdapter {
         data=buff;
         inflater=LayoutInflater.from(context);
     }
+    public void addData(String n)
+    {
+        data.add(n);
+        notifyDataSetChanged();
+    }
     @Override
     public int getCount() {
         return data==null?0:data.size();

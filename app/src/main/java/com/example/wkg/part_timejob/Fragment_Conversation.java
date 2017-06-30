@@ -49,6 +49,7 @@ public class Fragment_Conversation extends Fragment {
     private ArrayList<Conversation_Data>datas;
     private EditText et_addfriend;
     private Button btn_addfriend;
+    private  conversation_rv_adapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class Fragment_Conversation extends Fragment {
         setHasOptionsMenu(true);
         datas=new ArrayList<>();
         ((AppCompatActivity)getActivity()).setSupportActionBar(tb_conversation);
-        final conversation_rv_adapter adapter=new conversation_rv_adapter(getContext());
+        adapter=new conversation_rv_adapter(getContext());
         adapter.setArrayList(datas);
         JMessageClient.registerEventReceiver(this);
         //ContactManager.acceptInvitation();
@@ -70,13 +71,12 @@ public class Fragment_Conversation extends Fragment {
             public void gotResult(int i, String s, List<UserInfo> list) {
                 if(i==0)
                 {
-                    for (int j=0;i<list.size();i++){
-                        Conversation_Data data=new Conversation_Data();
+                    for (int j=0;i<list.size();i++) {
+                        Conversation_Data data = new Conversation_Data();
                         data.setInfo(list.get(j));
                         data.setTheName(list.get(j).getUserName());
-                        datas.add(data);
+                        adapter.addData(data);
                     }
-                    adapter.setArrayList(datas);
                 }
             }
         });
@@ -119,6 +119,7 @@ public class Fragment_Conversation extends Fragment {
         switch (msg.getContentType())
         {
             case text:
+                adpter.addData(msg);
                 //文字信息更新到adpater中
                 break;
             case image:
@@ -189,6 +190,7 @@ public class Fragment_Conversation extends Fragment {
     private ImageButton ibtn_sendInformation;
     private EditText et_themessage;
     private RecyclerView rv_holdmessage;
+    private conversationShow_rv_adpter adpter;
     public void showConversationdia(final UserInfo info)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
@@ -198,17 +200,19 @@ public class Fragment_Conversation extends Fragment {
         ibtn_sendInformation= (ImageButton) view.findViewById(R.id.ibtn_sendMessage);
         et_themessage= (EditText) view.findViewById(R.id.et_conversation_dialog);
         rv_holdmessage= (RecyclerView) view.findViewById(R.id.rv_conversation_dialog);
+        rv_holdmessage.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv_holdmessage.setAdapter(adpter);
         final Conversation conversation= Conversation.createSingleConversation(info.getUserName(),null);
         ibtn_sendInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Message message=conversation.createSendMessage(new TextContent(et_themessage.getText().toString()));
+                final Message message=conversation.createSendMessage(new TextContent(et_themessage.getText().toString()));
                 message.setOnSendCompleteCallback(new BasicCallback() {
                     @Override
                     public void gotResult(int i, String s) {
                         if(i==0)
                         {
-                            //update view
+                            adpter.addData(message);
                         }
                     }
                 });
