@@ -95,7 +95,8 @@
         </receiver>
         <!--         -->
 
-        <activity android:name=".MainActivity" >
+        <!--<activity android:name=".MainActivity" >-->
+        <activity android:name=".GuideActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -103,6 +104,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity_LoginFunction">
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 

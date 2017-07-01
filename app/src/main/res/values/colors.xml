@@ -3,6 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--主题颜色-->
+    <color name="topmain">#819BD4</color><!--主题-->
+    <color name="deepmain">#795dd3</color><!--深蓝 -->
+    <color name="btnmain">#A3159A</color><!--按键 -->
+    <!--主题颜色结束-->
+
+
+
     <!--此处是添加颜色的名称的地方-->
     <color name="transparent">#00000000</color><!--透明色 -->
     <color name="white">#FFFFFF</color><!--白色 -->
