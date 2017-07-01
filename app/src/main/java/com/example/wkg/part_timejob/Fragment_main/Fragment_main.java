@@ -21,7 +21,9 @@ import java.util.ArrayList;
 /**
  * Created by WKG on 2017/6/24.
  */
-
+/*
+数达到撒旦哇大苏打大苏打大大撒打算
+ */
 public class Fragment_main extends Fragment {
     private Banner banner;
     private ArrayList<Integer> list_path;
